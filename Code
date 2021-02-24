@@ -1,0 +1,15 @@
+from PyPDF2 import PdfFilewriter, PdfFileReader
+
+encrypter = PdfFileWriter() 
+file = PdfFileReader("sample.pdf")
+num = file.numPages
+
+for i in range(num):
+    page = file.getPage( i) 
+    encrypter.addPage(page)
+
+password = "python. .code" 
+encrypter.encrypt(password)
+
+with open("sample_encrypted.pdf", "b") as f: 
+    encrypter.write(f)
